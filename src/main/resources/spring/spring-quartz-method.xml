@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:utils="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd 
+         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+         
+	<bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" id="method_downMJob">
+		<!-- 调用的类 -->
+		<property name="targetObject">
+			<ref bean="downMJob" />
+		</property>
+		<!-- 调用类中的方法 -->
+		<property name="targetMethod">
+			<value>run</value>
+		</property>
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" id="method_lotteryMJob">
+		<!-- 调用的类 -->
+		<property name="targetObject">
+			<ref bean="lotteryMJob" />
+		</property>
+		<!-- 调用类中的方法 -->
+		<property name="targetMethod" >
+			<value>run</value>
+		</property>
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" id="method_updateMJob10">
+		<!-- 调用的类 -->
+		<property name="targetObject">
+			<ref bean="updateMJob" />
+		</property>
+		<!-- 调用类中的方法 -->
+		<property name="targetMethod" >
+			<value>run10</value>
+		</property>
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" id="method_updateMJob30">
+		<!-- 调用的类 -->
+		<property name="targetObject">
+			<ref bean="updateMJob" />
+		</property>
+		<!-- 调用类中的方法 -->
+		<property name="targetMethod" >
+			<value>run30</value>
+		</property>
+	</bean>
+	
+</beans>

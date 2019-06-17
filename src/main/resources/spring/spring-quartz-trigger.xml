@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:utils="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd 
+         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+         
+	
+	<bean class="org.springframework.scheduling.quartz.CronTriggerBean" id="trigger_lotteryMJob">
+		<property name="jobDetail">
+			<ref bean="method_lotteryMJob" />
+		</property>
+		<!-- cron表达式 -->
+		<property name="cronExpression">
+			<!-- 每日8时一次 -->
+			<value>0 30 10 * * ?</value>
+		</property>
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.CronTriggerBean" id="trigger_updateMJob10">
+		<property name="jobDetail">
+			<ref bean="method_updateMJob10" />
+		</property>
+		<!-- cron表达式 -->
+		<property name="cronExpression">
+			<!-- 每5分18秒执行一次 -->
+			<value>18 */5 * * * ?</value>
+		</property>
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.CronTriggerBean" id="trigger_downMJob">
+		<property name="jobDetail">
+			<ref bean="method_downMJob" />
+		</property>
+		<!-- cron表达式 -->
+		<property name="cronExpression">
+			<!-- 每6分18秒执行一次 -->
+			<value>18 */6 * * * ?</value>
+		</property>
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.CronTriggerBean" id="trigger_updateMJob30">
+		<property name="jobDetail">
+			<ref bean="method_updateMJob30" />
+		</property>
+		<!-- cron表达式 -->
+		<property name="cronExpression">
+			<!-- 每9分18秒执行一次 -->
+			<value>18 */9 * * * ?</value>
+		</property>
+	</bean>
+	<!-- 时间格式: s m h d m w(?) y(?),   分别对应: 秒>分>小时>日>月>周>年, 
+	Cron表达式的时间字段除允许设置数值外，还可使用一些特殊的字符，提供列表、范围、通配符等功能，细说如下：
+
+	●星号(*)：可用在所有字段中，表示对应时间域的每一个时刻，例如，*在分钟字段时，表示“每分钟”；
+
+	●问号（?）：该字符只在日期和星期字段中使用，它通常指定为“无意义的值”，相当于点位符；
+
+	●减号(-)：表达一个范围，如在小时字段中使用“10-12”，则表示从10到12点，即10,11,12；
+
+	●逗号(,)：表达一个列表值，如在星期字段中使用“MON,WED,FRI”，则表示星期一，星期三和星期五；
+
+	●斜杠(/)：x/y表达一个等步长序列，x为起始值，y为增量步长值。如在分钟字段中使用0/15，则表示为0,15,30和45秒，而5/15在分钟字段中表示5,20,35,50，你也可以使用*/y，它等同于0/y；
+	 -->
+</beans>
